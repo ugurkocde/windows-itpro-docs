@@ -291,7 +291,35 @@ You can also limit the number of diagnostic logs that are sent back to Microsoft
 
 3. In the **Options** box, choose the setting that you want to configure, and then click **OK**.
 
-### Use MDM to manage diagnostic data collection
+### Use Intune to manage diagnostic data collection
+
+#### Settings Catalog (Recommended)
+
+1. Open the [Microsoft Intune admin center](https://go.microsoft.com/fwlink/?linkid=2109431) and go to Devices > Windows > Configuration > Select **Create** > Select **New Policy**
+2. Configure the policy:
+   - **Platform**: Select Windows 10 and later.
+   - **Profile type**: Select Settings catalog and click Create.
+3. Specify a Name for the policy and click on Next.
+  
+![grafik](https://github.com/user-attachments/assets/783e3d24-60d9-49b3-bd86-1363821bfe8b)
+
+4. On the **Configuration settings** page select "+ Add settings". Now search and add all of the following settings:
+- **Allow Telemetry** → Full
+- **Limit Enhanced Diagnostic Data Windows Analytics** → Enabled)
+- **Limit Dump Collection** → Enabled
+- **Limit Diagnostic Log Collection** → Enabled
+
+![grafik](https://github.com/user-attachments/assets/5f4423e6-4aee-4516-a0f2-265b81dbc2ab)
+
+5. Select **Next** and configure the **Scope Tags** as per your own needs.
+6. In the **Assignments** section, select the target devices.
+   - For Autopatch, it's recommended to assign the policy to the default **Windows Autopatch - Devices All** group.
+7. Click **Next**, review your settings and assignments, and complete the policy creation by selecting **Create**.
+
+>[!Note]
+> More details for these settings can be found here: [Device configuration policies](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/references/windows-autopatch-changes-made-at-feature-activation#device-configuration-policies)
+
+#### Custom OMA-URI
 
 Use [Policy Configuration Service Provider (CSP)](/windows/client-management/mdm/policy-configuration-service-provider) to apply the following MDM policies:
 
